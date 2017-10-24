@@ -28,8 +28,8 @@ public class SampleController {
     public ModelAndView openSampleMainPage(CommandMap commandMap) throws Exception{
         ModelAndView mv = new ModelAndView("/sample/mainPage"); //화면에 보여줄 jsp파일
          
-        List<Map<String,Object>> list = sampleService.selectMainPage(commandMap.getMap());
-        mv.addObject("list", list);
+//        List<Map<String,Object>> list = sampleService.selectMainPage(commandMap.getMap());
+//        mv.addObject("list", list);
          
         return mv;
     }
