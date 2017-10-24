@@ -18,8 +18,6 @@ public interface SampleService {
 
     void deleteBoard(Map<String, Object> map) throws Exception;
 
-    List<Map<String, Object>> updateDB(Map<String, Object> map) throws Exception;
-
 	String dataAccess(Map<String, Object> map,String requestUrl,String firstName) throws XmlPullParserException, IOException;
 }
 

@@ -47,13 +47,6 @@ public class SampleServiceImpl implements SampleService{
     }
 
 	@Override
-	public List<Map<String, Object>> updateDB(Map<String, Object> map) throws Exception {
-		//DB업데이트 호출하고 메인페이지 리턴
-		sampleDAO.updateDB(map);//이거 제외하고 selectMainPage와 동일
-		return sampleDAO.selectMainPage(map);
-	}
-
-	@Override
 	public String dataAccess(Map<String, Object> map,String requestUrl,String firstName) throws XmlPullParserException, IOException {
 		return sampleDAO.dataAccess(map,requestUrl,firstName);
 	}
