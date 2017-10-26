@@ -43,12 +43,6 @@ public class SampleDAO extends AbstractDAO{
 	    update("sample.deleteBoard", map);
 	}
 
-	//업데이트DB
-	public void updateDB(Map<String, Object> map) throws Exception{
-		// TODO Auto-generated method stub
-		update("sample.updateDB", map);
-	}
-
 	public String dataAccess(Map<String, Object> map,String requestUrl,String requestName) throws XmlPullParserException, IOException {
 //		String PHARM_URL = "http://data.ulsan.go.kr/rest/ulsanscenes/getUlsanscenesList";
 		String PHARM_URL = requestUrl;
@@ -66,45 +60,15 @@ public class SampleDAO extends AbstractDAO{
 		int event_type = xpp.getEventType();
 		  
 		ArrayList<UlsanData> list = new ArrayList<UlsanData>();
-		UlsanData temp = new UlsanData("","","","","","","","");
+		UlsanData temp = new UlsanData("","","","","");
 		
 		while (event_type != XmlPullParser.END_DOCUMENT) {
 		    if (event_type == XmlPullParser.START_TAG) {
 		        tag = xpp.getName();
-		//              System.out.println(tag.toString());
 		    } else if (event_type == XmlPullParser.TEXT) {
 		      /**
 		   * 태그이름
 		   */
-//				switch(tag.toString()){
-//				case "ulsanscenesTitle" :
-//				temp.title = xpp.getText();
-//				//          		System.out.println(temp.title);
-//					break;
-//				case "ulsanscenesAddr" :
-//					temp.addr = xpp.getText();
-//					break;
-//				case "ulsanscenesXpos" :
-//					temp.xpos = xpp.getText();
-//					break;
-//				case "ulsanscenesYpos" :
-//					temp.ypos = xpp.getText();
-//					break;
-//				case "ulsanscenesInfo" :
-//					temp.info = xpp.getText();
-//					break;
-//				case "ulsanscenesTraffic" :
-//					temp.traffic = xpp.getText();
-//					break;
-//				case "ulsaanscenesTel" :
-//					temp.tel = xpp.getText();
-//					break;
-//				case "ulsaanscenesRegDt" :
-//				  		temp.regdt = xpp.getText();
-//				  		break;
-//				  	default :
-//				  		break;
-//				}
 		    	String tagName=tag.toString();
 		    	if(tagName.equals(firstName+"Title")||tagName.equals(firstName+"Name")){
 		    		temp.title = xpp.getText();
@@ -116,38 +80,24 @@ public class SampleDAO extends AbstractDAO{
 		    	else if(tagName.equals(firstName+"Ypos")){
 		    		temp.ypos = xpp.getText();
 		    	}
-		    	else if(tagName.equals(firstName+"Info")){
-		    		temp.info = xpp.getText();
-		    	}
-		    	else if(tagName.equals(firstName+"Traffic")){
-		    		temp.traffic = xpp.getText();
-		    	}
-		    	else if(tagName.equals(firstName+"RegDt")){
-		    		temp.regdt = xpp.getText();
-		    	}
 		    	else if(tagName.equals(firstName+"Tel")){
 		    		temp.tel = xpp.getText();
 		    	}
 		  } else if (event_type == XmlPullParser.END_TAG) {
 		      tag = xpp.getName();
 		      if (tag.equals("list")) {
-		              list.add(new UlsanData(temp.title,temp.addr,temp.xpos,temp.ypos,temp.info,temp.traffic,temp.tel,temp.regdt));
+		              list.add(new UlsanData(temp.title,temp.addr,temp.xpos,temp.ypos,temp.tel));
 		          }
 		  }
 		      event_type = xpp.next();
 		}
-//		String test="";
-//		String data = "myObj = { \"data\":[";
 		String data = "";
 		for(UlsanData entity : list){
-		    data+=entity.returnJson()+"^";
-//		    test=entity.returnJson();
+		    data+=entity.returnJsonString()+"^";
 		}
 		data = data.substring(0, data.length()-1); 
-//		data += "}";
 		System.out.println(data);
 		return data;
-//		return test;
 	}
 }
 //모든 쿼리는 "NAMESPACE . SQL ID" 의 구조 Sample_SQL의 네임스페이스와 아이디
@@ -159,36 +109,19 @@ class UlsanData{
 	String addr;
 	String xpos;
 	String ypos;
-	String info;
-	String traffic;
 	String tel;
-	String regdt;
-	
-	public UlsanData(String title, String addr,	String xpos, String ypos, String info, String traffic, String tel, String regdt){
+
+	public UlsanData(String title, String addr,	String xpos, String ypos, String tel){
 		this.title=title;
 		this.addr=addr;
 		this.xpos=xpos;
 		this.ypos=ypos;
-		this.info=info;
-		this.traffic=traffic;
 		this.tel=tel;
-		this.regdt=regdt;
+
 	}
+
 	
-	public void showInfo(){
-		System.out.println("------------------------------------");
-		System.out.println(title);
-		System.out.println(addr);
-		System.out.println(xpos);
-		System.out.println(ypos);
-		System.out.println(info);
-		System.out.println(traffic);
-		System.out.println(tel);
-		System.out.println(regdt);
-		System.out.println("------------------------------------");
-	}
-	
-	public String returnJson(){
+	public String returnJsonString(){
 		return "{\"title\": \""+ title + "\" , \"xpos\" : \""+xpos + "\" , \"ypos\" : \""+ypos +"\"}";
 	}
 }

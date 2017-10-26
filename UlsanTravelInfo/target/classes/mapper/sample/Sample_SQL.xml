@@ -89,12 +89,5 @@
 	            IDX = #{IDX}
 	    ]]>
 	</update>
-	
-<!-- 	업데이트DB 작성예정-->
-	<update id="updateDB" parameterType="hashmap">
-	    <![CDATA[
-	        
-	    ]]>
-	</update>
 
 </mapper>
