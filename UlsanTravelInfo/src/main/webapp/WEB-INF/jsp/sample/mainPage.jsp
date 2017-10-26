@@ -7,18 +7,18 @@
 <body>
 	<h1>울산 관광 정보 시스템</h1>
 	
-    <div class="mapDiv" style="width: 60%; height: 550px; float: left; margin-left: 5%; margin-right: 2%; ">
-		<div id="googleMap" style="width: 100%; height: 100%;"></div>
+    <div class="mapDiv">
+		<div id="googleMap"></div>
 		<br>
 		<p>API 콘솔 주소 =  <a href="https://console.developers.google.com/projectselector/apis/dashboard?hl=ko">https://console.developers.google.com/projectselector/apis/dashboard?hl=ko</a></p>
 	</div>
-	<div class="buttonDiv" style="width: 25%; height: 500px; float: right; margin-left: 2%;margin-right: 5%; text-align: center; padding-top: 2%;padding-bottom: 2%; background-color: lightblue;">
-		<input type="submit" value="울산12경" id="ulsan12"/>
-		<input type="submit" value="무료와이파이존" id="ulsanPubwifi"/>
-		<input type="submit" value="도시공원" id="ulsanPark"/>
-		<input type="submit" value="전시/박물관" id="ulsanMuseum"/>
-		<input type="submit" value="농어촌체험마을" id="ruralVillage"/>
-		<input type="submit" value="전통시장" id="ulsanmarket"/>
+	<div class="buttonDiv">
+		<input type="submit" value="울산12경" id="ulsan12"/><br>
+		<input type="submit" value="무료와이파이존" id="ulsanPubwifi"/><br>
+		<input type="submit" value="도시공원" id="ulsanPark"/><br>
+		<input type="submit" value="전시/박물관" id="ulsanMuseum"/><br>
+		<input type="submit" value="농어촌체험마을" id="ruralVillage"/><br>
+		<input type="submit" value="전통시장" id="ulsanmarket"/><br>
 		<input type="submit" value="공중화장실" id="ulsanToilet"/>
 	</div>
 	
