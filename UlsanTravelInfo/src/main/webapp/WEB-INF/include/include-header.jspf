@@ -13,8 +13,4 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="<c:url value='/js/common.js'/>" charset="utf-8"></script>
 
-<!--     구글맵API키 -->
-<script async defer
-   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCV20csFPiq82GMIeWgAN_fYSWc02xDNQM&callback=initMap">//my key =AIzaSyCV20csFPiq82GMIeWgAN_fYSWc02xDNQM
-</script>
    

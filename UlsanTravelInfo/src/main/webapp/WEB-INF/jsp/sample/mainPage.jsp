@@ -6,55 +6,60 @@
 <%@ include file="/WEB-INF/include/include-body.jspf" %>
 </head>
 <body>
-	<h1>울산 관광 정보 시스템</h1>
-	
-    <div class="mapDiv">
-		<div id="googleMap"></div>
-		<br>
-		<p>API 콘솔 주소 =  <a href="https://console.developers.google.com/projectselector/apis/dashboard?hl=ko">https://console.developers.google.com/projectselector/apis/dashboard?hl=ko</a></p>
-	</div>
-	<div class="buttonDiv">
-		<div class="buttonName">
-			<p>울산 12경</p>
-			<p>무료와이파이존</p>
-			<p>도시공원</p>
-			<p>전시/박물관</p>
-			<p>농어촌체험마을</p>
-			<p>전통시장</p>
-			<p>공중화장실</p>
+	<div id="mainBG"></div>
+	<div id="contents">
+		<h1>울산 관광 정보 시스템</h1>
+		<div class="mapDiv">
+			<div id="googleMap"></div>
+			<br>
+			<p>API 콘솔 주소 =  <a href="https://console.developers.google.com/projectselector/apis/dashboard?hl=ko">https://console.developers.google.com/projectselector/apis/dashboard?hl=ko</a></p>
 		</div>
-		<div class="buttonSwitch">
-			<label class="switch">
-			  <input type="checkbox" id="ulsan12">
-			  <span class="slider round"></span>
-			</label>
-			<label class="switch">
-			  <input type="checkbox" id="ulsanPubwifi">
-			  <span class="slider round"></span>
-			</label>
-			<label class="switch">
-			  <input type="checkbox" id="ulsanPark">
-			  <span class="slider round"></span>
-			</label>
-			<label class="switch">
-			  <input type="checkbox" id="ulsanMuseum">
-			  <span class="slider round"></span>
-			</label>
-			<label class="switch">
-			  <input type="checkbox" id="ruralVillage">
-			  <span class="slider round"></span>
-			</label>		
-			<label class="switch">
-			  <input type="checkbox" id="ulsanMarket">
-			  <span class="slider round"></span>
-			</label>
-			<label class="switch">
-			  <input type="checkbox" id="ulsanToilet">
-			  <span class="slider round"></span>
-			</label>
+		<div class="buttonDiv">
+			<div class="buttonName">
+				<p>울산 12경</p>
+				<p>무료와이파이존</p>
+				<p>도시공원</p>
+				<p>전시/박물관</p>
+				<p>농어촌체험마을</p>
+				<p>전통시장</p>
+				<p>공중화장실</p>
+			</div>
+			<div class="buttonSwitch">
+				<label class="switch">
+				  <input type="checkbox" id="ulsan12">
+				  <span class="slider round"></span>
+				</label>
+				<label class="switch">
+				  <input type="checkbox" id="ulsanPubwifi">
+				  <span class="slider round"></span>
+				</label>
+				<label class="switch">
+				  <input type="checkbox" id="ulsanPark">
+				  <span class="slider round"></span>
+				</label>
+				<label class="switch">
+				  <input type="checkbox" id="ulsanMuseum">
+				  <span class="slider round"></span>
+				</label>
+				<label class="switch">
+				  <input type="checkbox" id="ruralVillage">
+				  <span class="slider round"></span>
+				</label>		
+				<label class="switch">
+				  <input type="checkbox" id="ulsanMarket">
+				  <span class="slider round"></span>
+				</label>
+				<label class="switch">
+				  <input type="checkbox" id="ulsanToilet">
+				  <span class="slider round"></span>
+				</label>
+			</div>
 		</div>
 	</div>
-
+    
+	<script async defer
+	   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCV20csFPiq82GMIeWgAN_fYSWc02xDNQM&callback=initMap">//my key =AIzaSyCV20csFPiq82GMIeWgAN_fYSWc02xDNQM
+	</script>
     <script type="text/javascript">
     function initMap() {
 		map = new google.maps.Map(document.getElementById('googleMap'), {
@@ -104,8 +109,14 @@
 				          position: new google.maps.LatLng(xy.ypos,xy.xpos),
 				          map: map,
 				          title: xy.title,
-				         icon: icons[icon].icon
+				         icon: icons[icon].icon,
+				         text:'안녕'
 				        });
+// 					var marker = new google.maps.Marker(
+// 							new MarkerOptions()
+// 			                    .position(new google.maps.LatLng(xy.ypos,xy.xpos))
+// 			                    .title(xy.title).snippet("안녕").icon(icons[icon].icon)
+//                     );
 					 markers.push(marker);
 				}	
      	}
@@ -124,6 +135,11 @@
        	new settingButton("#ruralVillage","http://data.ulsan.go.kr/rest/ulsanruralvillage/getUlsanruralvillageList","ulsanruralvillage","village");
        	new settingButton("#ulsanMarket","http://data.ulsan.go.kr/rest/ulsanmarket/getUlsanmarketList","ulsanmarket","market");
        	new settingButton("#ulsanToilet","http://data.ulsan.go.kr/rest/ulsantoilet/getUlsantoiletList","toilet","toilet"); 
+       	
+        var numberOfImages=4;
+        var imageNum = Math.round(Math.random()*(numberOfImages-1))+1; 
+        var imgPath=(imageNum+'.png'); 
+        $('#mainBG').css('background-image', ('url("images/'+imgPath+'")')); 
     });
     var icons = {
 	    TD: {
