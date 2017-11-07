@@ -1,12 +1,16 @@
 package uti.sample.controller;
  
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
 import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -108,6 +112,55 @@ public class SampleController {
      public  String dataAccess(@RequestParam("requestUrl") String url,@RequestParam("firstName") String firstName, CommandMap commandMap) throws Exception{
     	String returnData = sampleService.dataAccess(commandMap.getMap(),url,firstName); 
     	return returnData;
+    }
+    
+    @RequestMapping(value="/selectComment.do",produces = "application/text; charset=utf8")
+    @ResponseBody
+     public String selectComment(@RequestParam("TITLE") String TITLE,@RequestParam("XY") String XY, CommandMap commandMap) throws Exception{
+    	List<Map<String, Object>> data = sampleService.selectComment(commandMap.getMap(),TITLE,XY);
+		
+		JSONArray json_arr=new JSONArray();
+        for (Map<String, Object> map : data) {
+            JSONObject json_obj=new JSONObject();
+            for (Map.Entry<String, Object> entry : map.entrySet()) {
+                String key = entry.getKey();
+                Object value = entry.getValue();
+                try {
+                    json_obj.put(key,value);
+                } catch (JSONException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }                           
+            }
+            json_arr.put(json_obj);
+        }
+        
+    	return json_arr.toString();
+    }
+    
+
+    @RequestMapping(value="/insertComment.do",produces = "application/text; charset=utf8")
+    @ResponseBody
+     public String insertComment(@RequestParam("TITLE") String TITLE,@RequestParam("XY") String XY, @RequestParam("CREA_NAME")String CREA_NAME, @RequestParam("COMMENT")String COMMENT, @RequestParam("STAR_POINT")Integer STAR_POINT, CommandMap commandMap) throws Exception{
+    	List<Map<String, Object>> data = sampleService.insertComment(commandMap.getMap(),TITLE,XY,CREA_NAME,COMMENT,STAR_POINT);
+		
+		JSONArray json_arr=new JSONArray();
+        for (Map<String, Object> map : data) {
+            JSONObject json_obj=new JSONObject();
+            for (Map.Entry<String, Object> entry : map.entrySet()) {
+                String key = entry.getKey();
+                Object value = entry.getValue();
+                try {
+                    json_obj.put(key,value);
+                } catch (JSONException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }                           
+            }
+            json_arr.put(json_obj);
+        }
+        
+    	return json_arr.toString();
     }
     
 }

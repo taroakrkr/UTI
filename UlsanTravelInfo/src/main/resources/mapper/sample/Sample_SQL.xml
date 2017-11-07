@@ -2,7 +2,57 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
 <mapper namespace="sample">
+
+      <select id="selectComment" parameterType="hashmap" resultType="hashmap">
+     	<![CDATA[
+     		SELECT
+     			TITLE,
+     			XY,
+			    COMMENTS,
+			    CREA_NAME,
+			    CREA_DTM,
+			    STAR_POINT
+			FROM
+			    TB_COMMENT
+			WHERE 
+				TITLE = #{TITLE} 
+			AND 
+				XY = #{XY}
+			ORDER BY CREA_DTM DESC
+     	]]>
+     </select>
      
+     <insert id="insertComment" parameterType="hashmap">
+	    <![CDATA[
+	        INSERT INTO TB_COMMENT
+	        (
+	        	IDX,
+	            TITLE,
+	            XY,
+			    COMMENTS,
+			    CREA_NAME,
+			    CREA_DTM,
+			    STAR_POINT
+	        )
+	        VALUES
+	        (
+	        	C_IDX.NEXTVAL,
+	            #{TITLE}, 
+	            #{XY},
+	            #{COMMENT},
+	            #{CREA_NAME},
+	            SYSDATE,
+	            #{STAR_POINT}
+	        )
+	    ]]>
+	</insert>
+	
+	
+	
+	
+	
+	
+	
      <select id="selectMainPage" parameterType="hashmap" resultType="hashmap">
      	<![CDATA[
      		SELECT

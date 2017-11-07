@@ -42,9 +42,27 @@ public class SampleDAO extends AbstractDAO{
 	public void deleteBoard(Map<String, Object> map) throws Exception{
 	    update("sample.deleteBoard", map);
 	}
-
+	
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> selectComment(Map<String, Object> map, String TITLE,String XY) throws Exception{
+		map.put("TITLE", (String)TITLE);
+		map.put("XY", (String)XY);
+		return (List<Map<String, Object>>)selectList("sample.selectComment",map);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> insertComment(Map<String, Object> map, String TITLE, String XY, String CREA_NAME, String COMMENT, Integer STAR_POINT) {
+		map.put("TITLE", (String)TITLE);
+		map.put("XY", (String)XY);
+		map.put("CREA_NAME", (String)CREA_NAME);
+		map.put("COMMENT", (String)COMMENT);
+		map.put("STAR_POINT", (Integer)STAR_POINT);
+		
+		insert("sample.insertComment", map);
+		return (List<Map<String, Object>>)selectList("sample.selectComment",map);
+	}
+	
 	public String dataAccess(Map<String, Object> map,String requestUrl,String requestName) throws XmlPullParserException, IOException {
-//		String PHARM_URL = "http://data.ulsan.go.kr/rest/ulsanscenes/getUlsanscenesList";
 		String PHARM_URL = requestUrl;
 		String KEY = "uXF7aS58LcHItF4VsvqpoHLJ5e7VrJdl%2FeKSmIVu3qai6qZfKR9GOYB4YrH1j7gLrt9UDq7iqaeeRoFBsP%2BR6w%3D%3D";
 		String firstName=requestName;
@@ -72,7 +90,7 @@ public class SampleDAO extends AbstractDAO{
 		    	String tagName=tag.toString();
 		    	if(tagName.equals(firstName+"Title")||tagName.equals(firstName+"Name")){
 		    		temp.title = xpp.getText();
-		    	}else if(tagName.equals(firstName+"Addr")){
+		    	}else if(tagName.equals(firstName+"Addr")||tagName.equals(firstName+"NewAddr")){
 		    		temp.addr = xpp.getText();
 		    	}else if(tagName.equals(firstName+"Xpos")){
 		    		temp.xpos = xpp.getText();
@@ -96,9 +114,10 @@ public class SampleDAO extends AbstractDAO{
 		    data+=entity.returnJsonString()+"^";
 		}
 		data = data.substring(0, data.length()-1); 
-		System.out.println(data);
 		return data;
 	}
+
+	
 }
 //모든 쿼리는 "NAMESPACE . SQL ID" 의 구조 Sample_SQL의 네임스페이스와 아이디
 
@@ -122,7 +141,7 @@ class UlsanData{
 
 	
 	public String returnJsonString(){
-		return "{\"title\": \""+ title + "\" , \"xpos\" : \""+xpos + "\" , \"ypos\" : \""+ypos +"\"}";
+		return "{\"title\": \""+ title + "\" , \"addr\" : \""+addr + "\" , \"tel\" : \""+tel + "\" , \"xpos\" : \""+xpos + "\" , \"ypos\" : \""+ypos +"\"}";
 	}
 }
 

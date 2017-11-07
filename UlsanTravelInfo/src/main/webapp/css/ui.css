@@ -1,80 +1,127 @@
 @CHARSET "UTF-8";
 
-#mainBG {
-	z-index: 500;
-	top: 0;
-	left: 0;
-	height: 100%;
-	width: 100%;
-	position: absolute;
-	opacity: 0.5;
+body{
+	color:white;
+	background-color: #3399ff;
 }
+/* -------------------------코멘트 한줄표시--------------------------------- */
+#commentDetail{
+	display: inline;
+}
+/* -------------------------별점 주기-------------------------------------- */
+.star_rating {font-size:0; letter-spacing:-4px;display:none;}
+.star_rating a {
+    font-size:22px;
+    letter-spacing:0;
+    display:inline-block;
+    margin-left:5px;
+    color:#ccc;
+    text-decoration:none;
+}
+.star_rating a:first-child {margin-left:0;}
+.star_rating a.on {color:#ffdb4d;}
+/* ----------------------------------------------------------------------- */
 
-#contents {
-	top: 10px;
-	left: 10px;
-	height: 100%;
-	width: 100%;
+/* -------------------------별점 표시-------------------------------------- */
+.star_pointing {font-size:0; letter-spacing:-4px;display:inline;}
+.star_pointing a {
+    font-size:22px;
+    letter-spacing:0;
+    display:inline-block;
+    margin-left:5px;
+    color:#ccc;
+    text-decoration:none;
+}
+.star_pointing a:first-child {margin-left:0;}
+.star_pointing a.on {color:#ffdb4d;}
+/* ----------------------------------------------------------------------- */
+
+/* -------------------------마커누르기전 숨기기-------------------------------- */
+#commentSubmit, #CREA_NAME, #COMMENT, #infoXY{
+	display: none;
+}
+/* ----------------------------------------------------------------------- */
+
+
+/* --------------------화면---------------------  */
+#line{
+	z-index: 2000;
 	position: absolute;
-	z-index: 1000;
+	top:80px;
+	left:0px;
+	width: 100%;
+	height: 3px;;
+/* 	background-color:#002966; */
+	background-color:white;
+}
+#contents {
+	height: 1000px;
+	width: 100%;
+	padding-left: 290px;
 }
 
 #title{
-	padding-left: 20px;
-	padding-bottom: 10px;
-	top: 10px;
-	left: 5px;
-	margin-bottom: 25px;
 	position: relative;
-	width: 1657px;
+	top:0px;
+	left:0px;
+	width: 1200px;
 	height: 80px;
-	background-color: lightblue;
-	border-radius: 10px;
-	border: 3px solid black;
-}
-
-#googleMap {
-	width: 100%;
-	height: 100%;
-	border-radius: 10px;
-	border-width: 3px;
-	border-color: black;
-	border-style: solid;
+	background-color: #3399ff;
 }
 
 .mapDiv {
-	width: 1350px;
-	height: 600px;
 	position: relative;
-	margin-left: 5px;
-	margin-right: 2px;
+	top:0px;
+	left:0px;
+	width: 900px;
+	height: 500px;
+}
+#googleMap {
+	color: black;
+	width: 100%;
+	height: 100%;
 }
 
 .buttonDiv {
-	border-radius: 10px;
-	border-width: 3px;
-	border-color: black;
-	border-style: solid; width : 280px;
-	height: 580px;
-	width: 280px;
 	position: relative;
-	top: -600px;
-	left: 1400px;
-	margin-left: 2px;
-	margin-right: 5px;
-	padding-top: 20px;
-	padding-bottom: 2px;
-	background-color: lightblue;
+	top:-500px;
+	left:910px;
+	width : 300px;
+	height: 500px;
+	background-color: #3399ff;
+	font-weight: bold;
+	border-radius: 10px;
+	border: 3px solid white;
 }
-
 .buttonDiv p {
 	position: relative;
 	display: inline-block;
 	font-size: 16px;
 	left: 25px;
 	height: 0px;
+	margin-top: 8px;
 }
 
+.info{
+	position: relative;
+	top:-490px;
+	left:0px;
+	width: 1180px;
+	height: 400px;
+	padding-left: 30px;
+	background-color:  #3399ff;
+	border-radius: 10px;
+	border: 3px solid white;
+}
+#CREA_NAME{
+	width: 100px;
+}
+#COMMENT{
+	width: 750px;
+}
+/* -------------------------------------------------------------------- */
+
+/* -------------------------- 패널 스위치  ---------------------------------- */
 .switch {
 	position: relative;
 	display: block;
@@ -113,11 +160,11 @@
 }
 
 input:checked+.slider {
-	background-color: #2196F3;
+	background-color: #99ccff;
 }
 
 input:focus+.slider {
-	box-shadow: 0 0 1px #2196F3;
+	box-shadow: 0 0 1px #99ccff;
 }
 
 input:checked+.slider:before {

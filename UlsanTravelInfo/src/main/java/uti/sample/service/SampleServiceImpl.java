@@ -50,6 +50,18 @@ public class SampleServiceImpl implements SampleService{
 	public String dataAccess(Map<String, Object> map,String requestUrl,String firstName) throws XmlPullParserException, IOException {
 		return sampleDAO.dataAccess(map,requestUrl,firstName);
 	}
+	
+	@Override
+	public List<Map<String, Object>> selectComment(Map<String, Object> map,String TITLE,String XY) throws Exception {
+
+		return sampleDAO.selectComment(map,TITLE,XY);
+	}
+
+	@Override
+	public List<Map<String, Object>> insertComment(Map<String, Object> map, String TITLE, String XY, String CREA_NAME, String COMMENT, Integer STAR_POINT) throws Exception {
+		sampleDAO.insertComment(map,TITLE,XY,CREA_NAME,COMMENT,STAR_POINT);
+		return sampleDAO.selectComment(map,TITLE,XY);
+	}
 
 }
 

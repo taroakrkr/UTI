@@ -19,6 +19,10 @@ public interface SampleService {
     void deleteBoard(Map<String, Object> map) throws Exception;
 
 	String dataAccess(Map<String, Object> map,String requestUrl,String firstName) throws XmlPullParserException, IOException;
+
+	List<Map<String, Object>> selectComment(Map<String, Object> map, String TITLE, String XY) throws Exception;
+
+	List<Map<String, Object>> insertComment(Map<String, Object> map, String TITLE, String XY, String CREA_NAME, String COMMENT, Integer STAR_POINT) throws Exception;
 }
 
 
