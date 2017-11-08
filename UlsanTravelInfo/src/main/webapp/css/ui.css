@@ -126,6 +126,17 @@ td#td_c{
 	border-radius: 10px;
 	border: 3px solid white;
 }
+#infoTitle{
+	margin-bottom: 10px;	
+}
+#infoAddr{
+	margin-top: 0px;
+	margin-bottom: 5px;
+}
+#infoTel{
+	margin-top: 0px;
+	margin-bottom: 5px;
+}
 #CREA_NAME{
 	width: 100px;
 }

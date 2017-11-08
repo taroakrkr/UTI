@@ -158,8 +158,8 @@
 	 							contentType : "application/x-www-form-urlencoded; charset=UTF-8",
 	 							success : function(response) {
 									var temp='<tr><th>작성자</th><th>댓글</th><th>작성일</th><th>별점</th></tr>';
-									if(response.length>4){
-										var commentLength=4;
+									if(response.length>5){
+										var commentLength=5;
 									}else{
 										var commentLength=response.length;
 									}
@@ -280,8 +280,8 @@
 					contentType : "application/x-www-form-urlencoded; charset=UTF-8",
 					success : function(response) {
 						var temp='<tr><th>작성자</th><th>댓글</th><th>작성일</th><th>별점</th></tr>';
-						if(response.length>4){
-							var commentLength=4;
+						if(response.length>5){
+							var commentLength=5;
 						}else{
 							var commentLength=response.length;
 						}
