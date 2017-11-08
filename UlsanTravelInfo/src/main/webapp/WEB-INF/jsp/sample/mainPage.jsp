@@ -7,7 +7,6 @@
 <%@ include file="/WEB-INF/include/include-body.jspf"%>
 </head>
 <body onload= "screenReSize()" onresize="screenReSize()">
-<!-- 	<div id="mainBG"></div> -->
 	<div id="line"></div>
 	<div id="contents">
 		<div id="title">
@@ -52,7 +51,11 @@
 			<p id="infoAddr">주소</p>
 			<p id="infoTel">전화</p>
 			<p id="infoXY" class="invisible"></p>
-			<div id="comments"></div>
+			<div id="comments">
+				<table id="c_table">
+					
+				</table>
+			</div>
 			<input type="text" id="CREA_NAME" name="CREA_NAME"/>
 			<input type="text" id="COMMENT" name="COMMENT"/>
 			<p class="star_rating">
@@ -63,6 +66,9 @@
 			    <a href="#">★</a>
 			</p>
 			<input id="commentSubmit"type="submit" value="댓글달기" />
+		</div>
+		<div id="ad">
+			<img src="https://tpc.googlesyndication.com/simgad/3560322988665511270"/>
 		</div>
 	</div>
 
@@ -137,7 +143,6 @@
 							$("#infoAddr").text('주소 : '+this.addr);
 							$("#infoTel").text('전화 : '+this.tel);
 							$("#infoXY").text(this.ypos+','+this.xpos);
-// 							$("#XY").val(this.ypos+','+this.xpos);
 							var infowindow = new google.maps.InfoWindow({
 	 					          content: '<p>'+this.title+'</p>'
 	 					        });
@@ -152,25 +157,25 @@
 	 							},
 	 							contentType : "application/x-www-form-urlencoded; charset=UTF-8",
 	 							success : function(response) {
-									var temp='';
+									var temp='<tr><th>작성자</th><th>댓글</th><th>작성일</th><th>별점</th></tr>';
 									if(response.length>4){
 										var commentLength=4;
 									}else{
 										var commentLength=response.length;
 									}
 									for(var i=0; i<commentLength;i++){
-										temp+='<p id="commentDetail">'+response[i].CREA_NAME +' '+response[i].COMMENTS +' '+ response[i].CREA_DTM;
-										temp+="<p class='star_pointing'>";
+										temp+='<tr>'+'<td>'+response[i].CREA_NAME +'</td>'+'<td id="td_c">'+response[i].COMMENTS +'</td>'+'<td>'+ response[i].CREA_DTM+'</td>';
+										temp+="<td><p class='star_pointing'>";
 										for(var j=0; j<response[i].STAR_POINT;j++){
 											temp+='<a class="on">★</a>';
 										}
 										for(var j=0; j<5-response[i].STAR_POINT;j++){
 											temp+='<a >★</a>';
 										}
-										temp+='</p>'+'</p>';
+										temp+='</p></td>'+'</tr>';
 									}
-									$("#comments").empty();
-									$("#comments").append(temp);
+									$("#c_table").empty();
+									$("#c_table").append(temp);
 									$("#commentSubmit").css("display","inline");
 									$("#CREA_NAME").css("display","inline");
 									$("#COMMENT").css("display","inline");
@@ -234,14 +239,6 @@
 				     return false;
 				});
 
-				//------------------------------랜덤 배경----------------------------------
-// 				var numberOfImages = 4;
-// 				var imageNum = Math.round(Math.random()
-// 						* (numberOfImages - 1)) + 1;
-// 				var imgPath = (imageNum + '.png');
-// 				$('#mainBG').css('background-image',
-// 						('url("images/' + imgPath + '")'));	
-				//------------------------------------------------------------------------			
 		});
 		function screenReSize(){
 			var w = window.outerWidth;
@@ -282,28 +279,27 @@
 					},
 					contentType : "application/x-www-form-urlencoded; charset=UTF-8",
 					success : function(response) {
-						var temp='';
+						var temp='<tr><th>작성자</th><th>댓글</th><th>작성일</th><th>별점</th></tr>';
 						if(response.length>4){
 							var commentLength=4;
 						}else{
 							var commentLength=response.length;
 						}
 						for(var i=0; i<commentLength;i++){
-							temp+='<p id="commentDetail">'+response[i].CREA_NAME +' '+response[i].COMMENTS +' '+ response[i].CREA_DTM;
-							temp+="<p class='star_pointing'>";
+							temp+='<tr>'+'<td>'+response[i].CREA_NAME +'</td>'+'<td id="td_c">'+response[i].COMMENTS +'</td>'+'<td>'+ response[i].CREA_DTM+'</td>';
+							temp+="<td><p class='star_pointing'>";
 							for(var j=0; j<response[i].STAR_POINT;j++){
 								temp+='<a class="on">★</a>';
 							}
 							for(var j=0; j<5-response[i].STAR_POINT;j++){
 								temp+='<a >★</a>';
 							}
-							temp+='</p>'+'</p>';
+							temp+='</p></td>'+'</tr>';
 						}
-						$("#comments").empty();
-						$("#comments").append(temp);
+						$("#c_table").empty();
+						$("#c_table").append(temp);
 						$("#CREA_NAME").val('');
 						$("#COMMENT").val('');
-//						console.dir(response);
 						},
 						error : function(responseData, request, status, error) {
 							console.log("에러");

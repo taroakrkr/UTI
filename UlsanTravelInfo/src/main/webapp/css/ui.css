@@ -4,6 +4,19 @@ body{
 	color:white;
 	background-color: #3399ff;
 }
+
+table{
+	width: 1100px;
+}
+th{
+	border-bottom: 2px solid white;
+}
+td{
+	text-align: center;
+}
+td#td_c{
+	text-align: left;
+}
 /* -------------------------코멘트 한줄표시--------------------------------- */
 #commentDetail{
 	display: inline;
@@ -118,6 +131,17 @@ body{
 }
 #COMMENT{
 	width: 750px;
+}
+#ad{
+	width: 250px;
+	height: 900px;
+	position: relative;
+	top:-1410px;
+	left:1330px;
+}
+#ad img{
+	width: 250px;
+	height: 900px;
 }
 /* -------------------------------------------------------------------- */
 
