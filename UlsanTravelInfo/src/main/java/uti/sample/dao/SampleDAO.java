@@ -50,8 +50,8 @@ public class SampleDAO extends AbstractDAO{
 		return (List<Map<String, Object>>)selectList("sample.selectComment",map);
 	}
 	
-	@SuppressWarnings("unchecked")
-	public List<Map<String, Object>> insertComment(Map<String, Object> map, String TITLE, String XY, String CREA_NAME, String COMMENT, Integer STAR_POINT) {
+
+	public void insertComment(Map<String, Object> map, String TITLE, String XY, String CREA_NAME, String COMMENT, Integer STAR_POINT) {
 		map.put("TITLE", (String)TITLE);
 		map.put("XY", (String)XY);
 		map.put("CREA_NAME", (String)CREA_NAME);
@@ -59,7 +59,7 @@ public class SampleDAO extends AbstractDAO{
 		map.put("STAR_POINT", (Integer)STAR_POINT);
 		
 		insert("sample.insertComment", map);
-		return (List<Map<String, Object>>)selectList("sample.selectComment",map);
+//		return (List<Map<String, Object>>)selectList("sample.selectComment",map);
 	}
 	
 	public String dataAccess(Map<String, Object> map,String requestUrl,String requestName) throws XmlPullParserException, IOException {
